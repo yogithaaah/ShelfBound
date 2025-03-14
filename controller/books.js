@@ -18,8 +18,17 @@ module.exports.getAllBooks = async (req, res) => {
     books = await Book.find({}); // Fetch all books if no query provided
   }
   res.json({
-    books: books,
+    books: books.map(book => ({
+      _id: book._id,
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      image_url: book.image_url,
+      year_published: book.year_published,
+      driveLink: book.driveLink || "", // Ensure driveLink is included
+    })),
   });
+  
 };
 
 module.exports.getBook = async (req, res) => {
@@ -27,8 +36,18 @@ module.exports.getBook = async (req, res) => {
   const book = await Book.findById(id);
 
   res.json({
-    book,
+    book: {
+      _id: book._id,
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      image_url: book.image_url,
+      year_published: book.year_published,
+      description: book.description,
+      driveLink: book.driveLink || "", // Ensure driveLink is included
+    },
   });
+  
 };
 
 module.exports.createBook = async (req, res) => {
@@ -46,8 +65,10 @@ module.exports.createBook = async (req, res) => {
     }
   }
 
-  const book = new Book(body);
-
+  const book = new Book({
+    ...body,
+    driveLink: body.driveLink || "", // Store drive link (optional)
+  });
   await book.save();
 
   res.json({
@@ -100,8 +121,11 @@ module.exports.updateBook = async (req, res) => {
     }
   } else body.image_url = previous.image_url;
 
-  const current = await Book.findByIdAndUpdate(id, body, { new: true });
-
+  const current = await Book.findByIdAndUpdate(
+    id,
+    { ...body, driveLink: body.driveLink || previous.driveLink }, // Preserve existing drive link if not updated
+    { new: true }
+  );
   res.json({
     previous,
     current,
