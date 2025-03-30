@@ -4,9 +4,10 @@ Shelf-Bound is a **MERN stack-based** book-tracking application that helps users
 
 ## 🚀 Features
 
-- 📖 Add, update, and remove books from your collection.
-- ✅ Track reading status: **Not Started, In Progress, Completed**.
+- 📖 Review and rate your favourite books.
+- ❤️ Add your favourite books to : **Favourites**.
 - 🔍 Search and filter books easily.
+- ✅ View preview pdf of all books you love
 - 📝 User authentication with JWT (Signup/Login).
 - 🎨 Modern UI with **React, Tailwind CSS, and ShadCN**.
 - ☁️ Hosted on **Vercel (Frontend) & Render (Backend)**.
