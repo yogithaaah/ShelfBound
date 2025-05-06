@@ -3,7 +3,8 @@
 
 Shelf-Bound is a **MERN stack-based** book-tracking application that helps users manage and track their reading progress efficiently. 
 
-## 🔗Project Link - https://shelfbound.vercel.app/books/
+## 🔗 Project Link  
+Check out the live app here: [Shelf-Bound Book Tracker](https://shelfbound.vercel.app/books/)
 
 ## 🚀 Features
 
